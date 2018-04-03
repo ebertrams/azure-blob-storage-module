@@ -35,8 +35,18 @@
             "status": "running",
             "restartPolicy": "always",
             "settings": {
-              "image": "localhost:5000/blobstoragemodule",
+              "image": "${MODULES.BlobStorageModule.amd64}",
               "createOptions": "{\"Env\":[\"STORAGE_CONNECTION_STRING=DefaultEndpointsProtocol=https;AccountName=ebertrastorage;AccountKey=La66N/Rv8UxfZO2wRj/dscas0DlfUqw0D10JmPOmBJwrEEi2THjHl72v7MCd1sUdyGBthCndNItTl29bNfFbJA==;EndpointSuffix=core.windows.net\",\"BLOB_CONTAINER_NAME=ebertrablob\"],\"PortBindings\": {\"5001/tcp\": [{\"HostPort\": \"5001\"}]}}"
+            }
+          },
+          "SendFilesModule": {
+            "version": "1.0",
+            "type": "docker",
+            "status": "running",
+            "restartPolicy": "always",
+            "settings": {
+              "image": "${MODULES.SendFilesModule.amd64}",
+              "createOptions": "{{\"Env\":[\"POST_URL=http://blobstoragemodule:8080\"],\"PortBindings\": {\"8080/tcp\": [{\"HostPort\": \"8080\"}]}}"
             }
           }
         }

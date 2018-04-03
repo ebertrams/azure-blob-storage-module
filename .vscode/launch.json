@@ -23,6 +23,29 @@
         "/app": "${workspaceFolder}/modules/BlobStorageModule"
       },
       "justMyCode": true
+    },
+    {
+      "name": "Debug IoT Edge Module SendFilesModule (.NET Core)",
+      "type": "coreclr",
+      "request": "attach",
+      "processId": "${command:pickRemoteProcess}",
+      "pipeTransport": {
+        "pipeProgram": "docker",
+        "pipeArgs": [
+          "exec",
+          "-i",
+          "SendFilesModule",
+          "sh",
+          "-c"
+        ],
+        "debuggerPath": "~/vsdbg/vsdbg",
+        "pipeCwd": "${workspaceFolder}",
+        "quoteArgs": true
+      },
+      "sourceFileMap": {
+        "/app": "${workspaceFolder}/modules/SendFilesModule"
+      },
+      "justMyCode": true
     }
   ]
 }
